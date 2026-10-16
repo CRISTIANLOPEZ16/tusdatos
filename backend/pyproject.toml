@@ -1,0 +1,40 @@
+[project]
+name = "backend"
+version = "0.1.0"
+description = "tusdatos backend technical test"
+authors = [
+    {name = "Cristian Lopez",email = "trabajolopezcr@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "pydantic (>=2.14.1,<3.0.0)",
+    "fastapi (>=0.143.0,<0.144.0)",
+    "uvicorn (>=0.54.0,<0.55.0)",
+    "sqlalchemy[asyncio] (>=2.1.4,<3.0.0)",
+    "sqlmodel (>=0.0.48,<0.0.49)",
+    "alembic (>=1.20.0,<2.0.0)",
+    "psycopg[binary] (>=3.3.6,<4.0.0)",
+    "pydantic-settings (>=2.15.0,<3.0.0)",
+    "email-validator (>=2.3.0,<3.0.0)",
+    "pwdlib[argon2] (>=0.3.1,<0.4.0)",
+    "pyjwt (>=2.15.1,<3.0.0)",
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "pytest (>=9.1.1,<10.0.0)",
+    "pytest-cov (>=7.1.0,<8.0.0)",
+    "httpx (>=0.28.1,<0.29.0)",
+    "flake8 (>=7.4.1,<8.0.0)"
+]
+
+
+[tool.pytest.ini_options]
+testpaths = ['test']
+pythonpath = ['.']
