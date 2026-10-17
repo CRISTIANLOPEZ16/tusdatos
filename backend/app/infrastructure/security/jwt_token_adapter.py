@@ -2,36 +2,40 @@ from datetime import datetime, timedelta, timezone
 
 import jwt
 
-from app.application.ports.token_issuer_port import InvalidTokenError
+from app.application.ports.token_verifier_port import InvalidTokenError
+
 
 class JWTTokenAdapter:
 
-    def __init__(self, secret:str, expire_minutes:int, algorith:str)->None:
-        self.secret= secret
+    def __init__(
+        self, secret: str, expire_minutes: int, algorithm: str,
+    ) -> None:
+        self.secret = secret
         self.expire_minutes = expire_minutes
-        self.algorith= algorith
+        self.algorithm = algorithm
 
-    def issue(self, user_id:int)->str:
+    def issue(self, user_id: int) -> str:
         now = datetime.now(timezone.utc)
         return jwt.encode(
             {
-                'sub':str(user_id),
-                'iat':now,
-                'exp':now+ timedelta(minutes=self.expire_minutes)
+                'sub': str(user_id),
+                'iat': now,
+                'exp': now + timedelta(minutes=self.expire_minutes),
             },
             self.secret,
-            algorithm= "HS256"
+            algorithm=self.algorithm,
         )
-    def get_user_id(self, token:str)->int|None :
+
+    def get_user_id(self, token: str) -> int:
         try:
             payload = jwt.decode(
                 token,
                 self.secret,
-                algorithms=["HS256"],
-                options={'require': ['sub', 'iat', 'exp']}
+                algorithms=[self.algorithm],
+                options={'require': ['sub', 'iat', 'exp']},
             )
             subject = payload["sub"]
-            if(
+            if (
                 not isinstance(subject, str)
                 or not subject.isascii()
                 or not subject.isdigit()
@@ -39,5 +43,5 @@ class JWTTokenAdapter:
             ):
                 raise jwt.InvalidTokenError("Invalid subject")
             return int(subject)
-        except InvalidTokenError as exc:
-            raise InvalidTokenError from exc
+        except (jwt.InvalidTokenError, ValueError) as exc:
+            raise InvalidTokenError("Invalid or expired token") from exc

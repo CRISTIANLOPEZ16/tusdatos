@@ -1,3 +1,4 @@
+from httpx import AsyncClient
 import pytest
 
 from app.application.ports.register_user_use_case import (
@@ -10,7 +11,7 @@ from app.domain.ports.user_repository_port import (
 pytestmark = pytest.mark.anyio
 
 
-async def test_registration_returns_201_without_sensitive_fields(client):
+async def test_registration_returns_201_without_sensitive_fields(client:AsyncClient):
     payload = {'email': 'user@example.com', 'password': 'password123'}
 
     response = await client.post('/users/register', json=payload)
@@ -44,7 +45,7 @@ async def test_registration_returns_409_when_email_exists(
     ({'password': 'password123'}, 'email'),
 ])
 async def test_invalid_input_returns_422_without_invoking_use_case(
-    client, registration_use_case, payload, field,
+    client:AsyncClient, registration_use_case, payload, field,
 ):
     response = await client.post('/users/register', json=payload)
 
@@ -55,7 +56,7 @@ async def test_invalid_input_returns_422_without_invoking_use_case(
 
 
 async def test_application_validation_error_returns_422(
-    client, registration_use_case,
+    client:AsyncClient, registration_use_case,
 ):
     registration_use_case.execute.side_effect = InvalidRegistrationError(
         'Invalid registration input',
@@ -69,7 +70,7 @@ async def test_application_validation_error_returns_422(
     assert response.json() == {'detail': 'Invalid registration input'}
 
 
-async def test_openapi_describes_registration_contract(client):
+async def test_openapi_describes_registration_contract(client:AsyncClient):
     response = await client.get('/openapi.json')
 
     assert response.status_code == 200
@@ -92,7 +93,7 @@ async def test_openapi_describes_registration_contract(client):
 
 
 @pytest.mark.parametrize('path', ['/docs', '/redoc'])
-async def test_documentation_pages_are_available(client, path):
+async def test_documentation_pages_are_available(client:AsyncClient, path):
     response = await client.get(path)
 
     assert response.status_code == 200

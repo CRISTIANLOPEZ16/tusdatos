@@ -74,11 +74,12 @@ async def test_registered_user_can_login_and_receive_valid_token(
     tokens = JWTTokenAdapter(
         secret=settings.JWT_SECRET_KEY,
         expire_minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES,
-        algorith=settings.ALGORITHM,
+        algorithm=settings.ALGORITHM,
     )
     assert tokens.get_user_id(body["access_token"]) == (
         registration.json()["user_id"]
     )
+
 
 
 async def test_unknown_user_and_wrong_password_receive_same_error(

@@ -56,3 +56,16 @@ class UserRepositoryAdapter:
             password_hash=row.password_hash,
             created_at=row.created_at
         )
+
+    async def get_by_id(self, user_id: int) -> User | None:
+        row = await self.session.get(UserModel, user_id)
+
+        if row is None:
+            return None
+
+        return User(
+            user_id=row.user_id,
+            email=row.email,
+            password_hash=row.password_hash,
+            created_at=row.created_at,
+        )
