@@ -1,3 +1,5 @@
+from typing import Literal
+
 from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from sqlalchemy import URL
@@ -9,10 +11,10 @@ class Settings(BaseSettings):
     DB_USER: str
     DB_PASSWORD: str
     DB_NAME: str
-    
-    JWT_SECRET_KEY:str= Field(min_length=64)
-    ACCESS_TOKEN_EXPIRE_MINUTES:int = Field(default=30, ge=1)
-    ALGORITHM:str
+
+    JWT_SECRET_KEY: str = Field(min_length=64)
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = Field(default=30, ge=1)
+    ALGORITHM: Literal["HS256"]
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 

@@ -1,12 +1,20 @@
-from dataclasses import dataclass, field
 from datetime import datetime, timezone
 
 
-@dataclass(frozen=True)
 class User:
-    email: str
-    password_hash: str = field(repr=False)
-    created_at: datetime = field(
-        default_factory=lambda: datetime.now(timezone.utc),
-    )
-    user_id: int | None = None
+    def __init__(
+        self,
+        *,
+        email: str,
+        password_hash: str,
+        user_id: int | None = None,
+        created_at: datetime | None = None,
+    ) -> None:
+        self.email = email
+        self.password_hash = password_hash
+        self.user_id = user_id
+        self.created_at = (
+            created_at
+            if created_at is not None
+            else datetime.now(timezone.utc)
+        )

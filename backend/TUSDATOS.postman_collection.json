@@ -1,0 +1,401 @@
+{
+  "info": {
+    "_postman_id": "5de7f5e0-13d5-4fba-b94b-fc1457c93f6a",
+    "name": "TUSDATOS",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "19656902",
+    "_collection_link": "https://go.postman.co/collection/19656902-5de7f5e0-13d5-4fba-b94b-fc1457c93f6a?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Events",
+      "item": [
+        {
+          "name": "CreateEvent",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzkyMjQ3MzAzLCJleHAiOjE3OTIyNDkxMDN9.4naB_jYOIedSXWhSvVvjX-irwH0Ie7DEC9fkdy5rxuw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n  \"name\": \"IA engineering\",\n  \"description\": \"Charlas sobre desarrollo backend con Python.\",\n  \"address\": \"Calle 100 # 15-20, Bogotá\",\n  \"starts_at\": \"2026-12-10T09:00:00-05:00\",\n  \"ends_at\": \"2026-12-10T18:00:00-05:00\",\n  \"status\": \"activo\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url_local}}/events",
+              "host": [
+                "{{base_url_local}}"
+              ],
+              "path": [
+                "events"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ListEvents",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url_local}}/events?name=IA",
+              "host": [
+                "{{base_url_local}}"
+              ],
+              "path": [
+                "events"
+              ],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "IA"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "UpdateEvent",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzkyMjQ3MzAzLCJleHAiOjE3OTIyNDkxMDN9.4naB_jYOIedSXWhSvVvjX-irwH0Ie7DEC9fkdy5rxuw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"IA engineering\",\n    \"address\": \"Calle 100 # 15-20, Bogotá\",\n    \"description\": \"Charlas sobre desarrollo backend con Python.\",\n    \"starts_at\": \"2026-12-10T09:00:00-05:00\",\n    \"ends_at\": \"2026-12-12T18:00:00-05:00\",\n    \"status\": \"borrador\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url_local}}/events/5",
+              "host": [
+                "{{base_url_local}}"
+              ],
+              "path": [
+                "events",
+                "5"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DeleteEvent",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzkyMjQ5NTY2LCJleHAiOjE3OTIyNTEzNjZ9.OhQxMLpRZwogl7hXDRFdYqfriR28RbtqKScJpGIHx04",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url_local}}/events/5",
+              "host": [
+                "{{base_url_local}}"
+              ],
+              "path": [
+                "events",
+                "5"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetEvent",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url_local}}/events/1",
+              "host": [
+                "{{base_url_local}}"
+              ],
+              "path": [
+                "events",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Sessiones",
+      "item": [
+        {
+          "name": "ListSession",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url_local}}/events/1/sessions",
+              "host": [
+                "{{base_url_local}}"
+              ],
+              "path": [
+                "events",
+                "1",
+                "sessions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CreateSession",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzkyMjU4OTIyLCJleHAiOjE3OTIyNjA3MjJ9.o0bSOQLFAXi1Pr-Q-ldN1BtUBJcFoKJSFPEV9uAUnoc",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"IA aplicada a MCP\",\n  \"starts_at\": \"2026-12-10T17:30:00.752Z\",\n  \"ends_at\": \"2026-12-10T18:30:00.752Z\",\n  \"capacity\": 50,\n  \"speaker_names\": [\n    \"Andrew Ng\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url_local}}/events/1/sessions",
+              "host": [
+                "{{base_url_local}}"
+              ],
+              "path": [
+                "events",
+                "1",
+                "sessions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "UpdateSession",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzkyMjU4OTIyLCJleHAiOjE3OTIyNjA3MjJ9.o0bSOQLFAXi1Pr-Q-ldN1BtUBJcFoKJSFPEV9uAUnoc",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"IA aplicada a MCP\",\n  \"starts_at\": \"2026-12-10T17:30:00.752Z\",\n  \"ends_at\": \"2026-12-10T18:30:00.752Z\",\n  \"capacity\": 50,\n  \"speaker_names\": [\n    \"Andrew Ng\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url_local}}/events/1/sessions/1",
+              "host": [
+                "{{base_url_local}}"
+              ],
+              "path": [
+                "events",
+                "1",
+                "sessions",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetSession",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url_local}}/events/1/sessions/1",
+              "host": [
+                "{{base_url_local}}"
+              ],
+              "path": [
+                "events",
+                "1",
+                "sessions",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DeleteSession",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzkyMjU4OTIyLCJleHAiOjE3OTIyNjA3MjJ9.o0bSOQLFAXi1Pr-Q-ldN1BtUBJcFoKJSFPEV9uAUnoc",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url_local}}/events/1/sessions/1",
+              "host": [
+                "{{base_url_local}}"
+              ],
+              "path": [
+                "events",
+                "1",
+                "sessions",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "RegisterUserToSession",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "CreateUser",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"local-test@example.com\",\n  \"password\": \"LocalTestPassword123!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url_local}}/users/register",
+              "host": [
+                "{{base_url_local}}"
+              ],
+              "path": [
+                "users",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ListMeEvents",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ListMeSessions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "AuthLogin",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"local-test@example.com\",\n  \"password\": \"LocalTestPassword123!\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url_local}}/auth/login",
+          "host": [
+            "{{base_url_local}}"
+          ],
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
