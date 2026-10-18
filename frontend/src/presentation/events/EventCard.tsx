@@ -1,3 +1,5 @@
+import { Link as RouterLink } from 'react-router';
+import { Link } from '@mui/material';
 import { Box, Chip, Paper, Stack, Typography } from '@mui/material';
 import type { EventStatus, EventSummary } from '../../domain/event';
 
@@ -12,12 +14,12 @@ const labels: Record<EventStatus, string> = {
   borrador: 'Borrador', archivado: 'Archivado',
 };
 
-export function EventCard({ event }: { event: EventSummary }) {
+export function EventCard({ event, to }: { event: EventSummary; to?: string }) {
   const start = new Date(event.starts_at);
   const initials = event.name.split(/\s+/).slice(0, 2).map((word) => word[0]).join('').toLocaleUpperCase('es-CO');
   return (
     <Paper component="article" variant="outlined" sx={{
-      p: { xs: 2, sm: 3 }, borderColor: '#E9E5EF', borderRadius: 3,
+      position: 'relative', p: { xs: 2, sm: 3 }, borderColor: '#E9E5EF', borderRadius: 3,
       display: 'flex', alignItems: 'center', gap: { xs: 2, sm: 3 },
     }}>
       <Box sx={{ flex: 1, minWidth: 0, overflowWrap: 'anywhere' }}>
@@ -25,7 +27,7 @@ export function EventCard({ event }: { event: EventSummary }) {
           <time dateTime={event.starts_at}>{dateFormat.format(start)} · {timeFormat.format(start)}</time>
         </Typography>
         <Typography component="h3" sx={{ fontSize: { xs: 18, sm: 22 }, fontWeight: 750, lineHeight: 1.3, mb: 1 }}>
-          {event.name}
+          <Link component={RouterLink} to={to ?? `/eventos/${event.event_id}`} color="inherit" underline="hover" sx={{ '&::after': { content: '""', position: 'absolute', inset: 0, borderRadius: 3 }, '&:focus-visible::after': { outline: '3px solid #285BD4' } }}>{event.name}</Link>
         </Typography>
         <Typography sx={{ color: 'text.secondary', fontSize: 13, overflowWrap: 'anywhere' }}>
           {event.address}

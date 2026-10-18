@@ -18,7 +18,7 @@ function EventSearch({ initialName, onSearch }:
     if (!invalid) onSearch(value.trim());
   }
   return (
-    <Box component="form" role="search" onSubmit={submit} sx={{ display: 'flex', gap: 1.5, maxWidth: 760, mb: 5 }}>
+    <Box component="form" role="search" onSubmit={submit} sx={{ display: 'flex', gap: 1.5, width: '100%', mb: 5 }}>
       <TextField fullWidth size="small" value={value} error={invalid}
         onChange={(event) => setValue(event.target.value)} placeholder="Buscar eventos por nombre"
         helperText={invalid ? 'Usa un máximo de 150 caracteres.' : undefined}
@@ -124,7 +124,7 @@ export default function EventListPage() {
             </Stack>}
 
             {data && <Box aria-busy={query.isFetching}>
-              <Stack spacing={2}>{data.items.map((event) => <EventCard key={event.event_id} event={event} />)}</Stack>
+              <Stack spacing={2}>{data.items.map((event) => <EventCard key={event.event_id} event={event} to={`/eventos/${event.event_id}`} />)}</Stack>
               {data.items.length === 0 && <Paper variant="outlined" sx={{ p: 4, textAlign: 'center', borderColor: '#E9E5EF' }}>
                 <Typography component="h3" sx={{ fontWeight: 700, mb: 1 }}>
                   {data.total > 0 ? 'Esta página ya no tiene eventos' : params.name ? 'No encontramos eventos' : 'Todavía no hay eventos publicados'}

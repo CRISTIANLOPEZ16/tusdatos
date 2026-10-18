@@ -9,6 +9,8 @@ const EventListPage = lazy(() => import('../presentation/events/EventListPage'))
 const LoginPage = lazy(() => import('../presentation/auth/LoginPage'));
 const MyDashboardPage = lazy(() => import('../presentation/profile/MyDashboardPage'));
 
+const EventDetailPage = lazy(() => import('../presentation/events/EventDetailPage'));
+
 export function AppRouter() {
   return (
     <BrowserRouter>
@@ -20,6 +22,7 @@ export function AppRouter() {
           <Route path="/eventos/page/:page" element={<EventListPage />} />
           <Route path="/eventos/buscar/:name" element={<EventListPage />} />
           <Route path="/eventos/buscar/:name/page/:page" element={<EventListPage />} />
+          <Route path="/eventos/:eventId" element={<EventDetailPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route element={<RequireAuth />}>
             <Route path="/my-dashboard" element={<MyDashboardPage />} />

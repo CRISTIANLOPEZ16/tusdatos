@@ -42,7 +42,7 @@ describe('listado HTTP', () => {
 
   it('interpreta la lista de errores 422 como entrada inválida', async () => {
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue(Response.json({ detail: [{ loc: ['query', 'name'], msg: 'Invalid' }] }, { status: 422 })));
-    await expect(getJson('/events')).rejects.toThrow('Revisa los parámetros de búsqueda.');
+    await expect(getJson('/events')).rejects.toThrow('Revisa los datos enviados.');
   });
 
   it('rechaza JSON inválido sin reintento automático', async () => {
