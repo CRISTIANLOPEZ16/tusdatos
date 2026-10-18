@@ -22,6 +22,7 @@ class EventRepositoryPort(Protocol):
         name: str | None,
         registered_user_id: int | None = None,
         statuses: list[EventStatus] | None = None,
+        user_id: int | None = None,
     ) -> tuple[list[Event], int]:
         ...
 

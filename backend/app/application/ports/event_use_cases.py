@@ -31,6 +31,18 @@ class ListEventUseCase(Protocol):
         ...
 
 
+class ListEventUserUseCase(Protocol):
+    async def list_all_me_events(
+        self,
+        *,
+        user_id: int,
+        page: int,
+        items_per_page: int,
+        name: str | None = None,
+    ) -> ListedEvents:
+        ...
+
+
 class GetEventUseCase(Protocol):
     async def get_event_by_event_id(self, event_id: int) -> EventDetails: ...
 

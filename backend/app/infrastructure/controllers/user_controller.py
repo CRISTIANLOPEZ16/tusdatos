@@ -3,7 +3,9 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 
-from app.application.ports.event_use_cases import ListRegisteredEventsUseCase
+from app.application.ports.event_use_cases import (
+    ListEventUserUseCase, ListRegisteredEventsUseCase,
+)
 from app.application.ports.register_user_use_case import (
     InvalidRegistrationError,
     RegisterUserUseCase,
@@ -104,18 +106,42 @@ async def register_user(
 
 @router.get(
     "/me/events", response_model=ListEventResponse,
-    summary='Listar mis eventos por inscripción',
+    summary='Listar mis eventos creados',
     description=(
-        'Requiere Bearer JWT. Devuelve los eventos en los que el usuario '
-        'tiene al menos una sesión inscrita, sin repetir eventos. No es un '
-        'listado de eventos creados por el usuario. Permite paginación y '
+        'Requiere Bearer JWT. Devuelve los eventos creados por el usuario '
+        'autenticado, en cualquier estado. Permite paginación y '
         'búsqueda por nombre; no aplica el filtro de estados del listado '
         'público. Devuelve resúmenes sin sesiones, ordenados por ID. '
     ),
-    response_description='Página de eventos con sesiones inscritas',
+    response_description='Página de eventos creados por el usuario',
     responses={401: ERROR_RESPONSES[401], 422: ERROR_RESPONSES[422]},
 )
 async def list_my_events(
+    user_id: CurrentUserId, params: Annotated[ListEventParams, Query()],
+    use_case: Annotated[
+        ListEventUserUseCase, Depends(get_event_service),
+    ],
+) -> ListEventResponse:
+    result = await use_case.list_all_me_events(
+        user_id=user_id, **params.model_dump(),
+    )
+    return ListEventResponse(**asdict(result))
+
+
+@router.get(
+    "/me/registered-events", response_model=ListEventResponse,
+    summary="Listar mis eventos por inscripción",
+    description=(
+        "Requiere Bearer JWT. Devuelve los eventos en los que el usuario "
+        "tiene al menos una sesión inscrita. Cada evento aparece una sola "
+        "vez, aunque tenga varias sesiones inscritas. Permite paginación "
+        "y búsqueda por nombre, sin filtrar estados. Los resúmenes no "
+        "incluyen sesiones y se ordenan por ID."
+    ),
+    response_description="Página de eventos con sesiones inscritas",
+    responses={401: ERROR_RESPONSES[401], 422: ERROR_RESPONSES[422]},
+)
+async def list_my_registered_events(
     user_id: CurrentUserId, params: Annotated[ListEventParams, Query()],
     use_case: Annotated[
         ListRegisteredEventsUseCase, Depends(get_event_service),

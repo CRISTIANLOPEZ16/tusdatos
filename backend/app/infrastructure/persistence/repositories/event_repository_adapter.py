@@ -95,6 +95,7 @@ class EventRepositoryAdapter:
         name: str | None,
         registered_user_id: int | None = None,
         statuses: list[EventStatus] | None = None,
+        user_id: int | None = None,
     ) -> tuple[list[Event], int]:
         query = self._query()
 
@@ -102,6 +103,9 @@ class EventRepositoryAdapter:
             query = query.where(
                 func.lower(EventModel.name).icontains(name, autoescape=True)
             )
+
+        if user_id is not None:
+            query = query.where(EventModel.created_by == user_id)
 
         if statuses is not None:
             query = query.where(EventModel.status.in_(statuses))

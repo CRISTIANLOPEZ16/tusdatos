@@ -37,6 +37,7 @@ class EventService:
         self, *, page: int, items_per_page: int, name: str | None,
         registered_user_id: int | None = None,
         statuses: list[EventStatus] | None = None,
+        user_id: int | None = None,
     ) -> ListedEvents:
         if page < 1:
             raise InvalidEventQueryError(
@@ -59,6 +60,7 @@ class EventService:
             name=name,
             registered_user_id=registered_user_id,
             statuses=statuses,
+            user_id=user_id,
         )
 
         return ListedEvents(
@@ -75,12 +77,30 @@ class EventService:
         items_per_page: int,
         name: str | None = None,
     ) -> ListedEvents:
-        statuses = [EventStatus.ACTIVE, EventStatus.CANCELLED, EventStatus.FINISHED]
+        statuses = [
+            EventStatus.ACTIVE, EventStatus.CANCELLED, EventStatus.FINISHED,
+        ]
         return await self._list(
             page=page,
             items_per_page=items_per_page,
             name=name,
             statuses=statuses,
+        )
+
+    async def list_all_me_events(
+        self,
+        *,
+        user_id: int,
+        page: int,
+        items_per_page: int,
+        name: str | None = None,
+    ) -> ListedEvents:
+        await self._require_user(user_id)
+        return await self._list(
+            page=page,
+            items_per_page=items_per_page,
+            name=name,
+            user_id=user_id,
         )
 
     async def create_event(
