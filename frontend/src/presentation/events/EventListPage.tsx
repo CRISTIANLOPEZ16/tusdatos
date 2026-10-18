@@ -1,3 +1,6 @@
+import { Link as RouterLink } from 'react-router';
+import { Link } from '@mui/material';
+import { useAuth } from '../auth/useAuth';
 import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { Alert, Box, Button, Chip, Container, InputAdornment, LinearProgress, Paper,
@@ -36,6 +39,7 @@ function EventSearch({ initialName, onSearch }:
 
 export default function EventListPage() {
   const { page, name } = useParams();
+  const { isAuthenticated } = useAuth();
   const navigateTo = useNavigate();
 
   const params = readEventQuery(
@@ -92,6 +96,9 @@ export default function EventListPage() {
         <Typography sx={{ color: 'text.secondary', fontSize: 15, mt: 2, mb: 3.5 }}>
           Encuentra eventos, descubre nuevas ideas y conecta con tu comunidad.
         </Typography>
+        {!isAuthenticated && <Typography sx={{ color: 'text.secondary', fontSize: 14, mb: 3 }}>
+          Haz parte de la comunidad: <Link component={RouterLink} to="/registro" underline="hover" sx={{ fontWeight: 700 }}>crea tu cuenta</Link> para inscribirte a sesiones y organizar eventos.
+        </Typography>}
         <EventSearch key={params.name ?? ''} initialName={params.name ?? ''}
           onSearch={(name) => navigate(name, 1)} />
 

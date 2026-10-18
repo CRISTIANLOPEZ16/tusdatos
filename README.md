@@ -1,37 +1,61 @@
 # Mis Eventos
 
-Aplicación para gestionar eventos, sesiones e inscripciones.
-Frontend con React y TypeScript, backend con FastAPI y PostgreSQL 17.
+Aplicación con frontend React/Vite, API FastAPI y PostgreSQL 17.
 
 ## Ejecutar con Docker
 
-Requiere Docker y Docker Compose. Desde la raíz:
+Requiere Docker con Docker Compose.
 
-```bash
-cp -n backend/.env.example backend/.env
-cp -n backend/.env.example backend/.env.test
-```
+1. Copia `backend/.env.example` a `backend/.env` y, si no existe, a
+   `backend/.env.test`:
 
-Configura las credenciales de PostgreSQL en ambos archivos. En `.env.test`,
-usa un `DB_NAME` terminado en `_test`, con el mismo usuario y contraseña.
-En `.env`, define `SEED_PASSWORD` (mínimo 8 caracteres) y una clave
-`JWT_SECRET_KEY` aleatoria de al menos 64 caracteres.
+   ```bash
+   cp -n backend/.env.example backend/.env
+   cp -n backend/.env.example backend/.env.test
+   ```
 
-```bash
-docker compose --env-file backend/.env up --build -d --wait
-```
+2. En `.env.test`, configura `DB_NAME` con un nombre terminado en `_test`,
+   por ejemplo `events_db_test`. Conserva el mismo `DB_USER` y `DB_PASSWORD`
+   de `.env`: Compose crea también esa base para las pruebas locales.
+   En `.env`, define `SEED_PASSWORD` con al menos 8 caracteres y reemplaza
+   el ejemplo de `JWT_SECRET_KEY` por una clave aleatoria de al menos
+   64 caracteres. Puedes generarla con:
+
+   ```bash
+   python3 -c 'import secrets; print(secrets.token_hex(32))'
+   ```
+
+3. Desde la raíz del repositorio:
+
+   ```bash
+   docker compose --env-file backend/.env up --build -d --wait
+   ```
 
 - Frontend: http://localhost:3000
-- Swagger: http://localhost:8000/docs
+- API y Swagger: http://localhost:8000/docs
+- PostgreSQL: `localhost`, puerto `DB_PORT` de `.env` (5432 por defecto).
 
-El arranque aplica las migraciones y carga los eventos, sesiones y ponentes
-de `backend/scripts/event_data.json`. Usuario demo: `demo@example.com`;
-contraseña: `SEED_PASSWORD` de su primera creación.
+El backend espera a PostgreSQL, aplica las migraciones y ejecuta
+`scripts.seed` antes de iniciar la API. El seed lee
+`backend/scripts/event_data.json`, crea los registros que falten y conserva
+los existentes. El usuario de demostración es `demo@example.com`, con la
+contraseña `SEED_PASSWORD` cuando se crea por primera vez; repetir el seed
+no cambia su contraseña.
 
-Para detener los servicios conservando los datos:
+Nginx sirve el frontend y redirige `/api/` al backend por la red de Compose.
+Las rutas del frontend admiten recarga directa sin devolver 404. El proxy
+de Vite se sigue usando al desarrollar con `npm run dev`.
+
+Para cambiar los puertos publicados, define `FRONTEND_PORT`, `BACKEND_PORT`
+o `DB_PORT` al ejecutar Compose. Dentro de los contenedores, PostgreSQL
+mantiene el puerto 5432 y la API el 8000.
+
+## Logs y parada
 
 ```bash
+docker compose --env-file backend/.env logs -f backend frontend
 docker compose --env-file backend/.env down
 ```
 
-Desarrollo y pruebas: [backend](backend/README.md) · [frontend](frontend/README.md).
+La base de datos se conserva en el volumen `postgres_data` al detener los
+contenedores. No uses `down -v` si quieres conservar sus datos.

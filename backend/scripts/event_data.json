@@ -1,4 +1,3 @@
-
 [
   {
     "name": "Inteligencia Artificial y Machine Learning",
@@ -6,7 +5,45 @@
     "address": "Calle 100 # 15-20, Bogotá",
     "starts_at": "2026-12-10T09:00:00-05:00",
     "ends_at": "2026-12-10T18:00:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "Fundamentos modernos de deep learning",
+        "starts_at": "2026-12-10T09:30:00.000-05:00",
+        "ends_at": "2026-12-10T10:40:00.000-05:00",
+        "capacity": 50,
+        "speaker_names": [
+          "Andrew Ng"
+        ]
+      },
+      {
+        "title": "Transformers y modelos fundacionales",
+        "starts_at": "2026-12-10T11:30:00.000-05:00",
+        "ends_at": "2026-12-10T12:40:00.000-05:00",
+        "capacity": 80,
+        "speaker_names": [
+          "Ashish Vaswani"
+        ]
+      },
+      {
+        "title": "Aprendizaje profundo en producción",
+        "starts_at": "2026-12-10T13:30:00.000-05:00",
+        "ends_at": "2026-12-10T14:40:00.000-05:00",
+        "capacity": 100,
+        "speaker_names": [
+          "François Chollet"
+        ]
+      },
+      {
+        "title": "Retos y límites de la IA",
+        "starts_at": "2026-12-10T15:30:00.000-05:00",
+        "ends_at": "2026-12-10T16:40:00.000-05:00",
+        "capacity": 60,
+        "speaker_names": [
+          "Yoshua Bengio"
+        ]
+      }
+    ]
   },
   {
     "name": "Desarrollo Backend con Python y FastAPI",
@@ -14,7 +51,36 @@
     "address": "Carrera 7 # 32-16, Bogotá",
     "starts_at": "2026-12-11T08:00:00-05:00",
     "ends_at": "2026-12-11T17:00:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "Diseño de APIs con FastAPI",
+        "starts_at": "2026-12-11T08:30:00.000-05:00",
+        "ends_at": "2026-12-11T09:40:00.000-05:00",
+        "capacity": 80,
+        "speaker_names": [
+          "Sebastián Ramírez"
+        ]
+      },
+      {
+        "title": "AsyncIO y concurrencia en Python",
+        "starts_at": "2026-12-11T11:00:00.000-05:00",
+        "ends_at": "2026-12-11T12:10:00.000-05:00",
+        "capacity": 100,
+        "speaker_names": [
+          "Łukasz Langa"
+        ]
+      },
+      {
+        "title": "Tipado y calidad de código Python",
+        "starts_at": "2026-12-11T13:30:00.000-05:00",
+        "ends_at": "2026-12-11T14:40:00.000-05:00",
+        "capacity": 60,
+        "speaker_names": [
+          "Guido van Rossum"
+        ]
+      }
+    ]
   },
   {
     "name": "AWS Serverless Architecture Summit",
@@ -22,7 +88,36 @@
     "address": "Calle 93 # 13-45, Bogotá",
     "starts_at": "2026-12-12T09:30:00-05:00",
     "ends_at": "2026-12-12T16:30:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "Arquitecturas serverless en AWS",
+        "starts_at": "2026-12-12T10:00:00.000-05:00",
+        "ends_at": "2026-12-12T11:10:00.000-05:00",
+        "capacity": 100,
+        "speaker_names": [
+          "Werner Vogels"
+        ]
+      },
+      {
+        "title": "Event-driven con colas y funciones",
+        "starts_at": "2026-12-12T12:00:00.000-05:00",
+        "ends_at": "2026-12-12T13:10:00.000-05:00",
+        "capacity": 60,
+        "speaker_names": [
+          "Adrian Cockcroft"
+        ]
+      },
+      {
+        "title": "Patrones para sistemas cloud resilientes",
+        "starts_at": "2026-12-12T14:00:00.000-05:00",
+        "ends_at": "2026-12-12T15:10:00.000-05:00",
+        "capacity": 120,
+        "speaker_names": [
+          "Kelsey Hightower"
+        ]
+      }
+    ]
   },
   {
     "name": "Ciberseguridad y Ethical Hacking",
@@ -30,7 +125,36 @@
     "address": "Carrera 15 # 85-60, Bogotá",
     "starts_at": "2026-12-14T10:00:00-05:00",
     "ends_at": "2026-12-14T18:00:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "Seguridad de aplicaciones web",
+        "starts_at": "2026-12-14T10:30:00.000-05:00",
+        "ends_at": "2026-12-14T11:40:00.000-05:00",
+        "capacity": 60,
+        "speaker_names": [
+          "Troy Hunt"
+        ]
+      },
+      {
+        "title": "Investigación de vulnerabilidades",
+        "starts_at": "2026-12-14T12:45:00.000-05:00",
+        "ends_at": "2026-12-14T13:55:00.000-05:00",
+        "capacity": 120,
+        "speaker_names": [
+          "Katie Moussouris"
+        ]
+      },
+      {
+        "title": "Mentalidad de un hacker ético",
+        "starts_at": "2026-12-14T15:00:00.000-05:00",
+        "ends_at": "2026-12-14T16:10:00.000-05:00",
+        "capacity": 50,
+        "speaker_names": [
+          "Kevin Mitnick"
+        ]
+      }
+    ]
   },
   {
     "name": "DevOps y Automatización CI/CD",
@@ -38,7 +162,36 @@
     "address": "Calle 72 # 10-34, Bogotá",
     "starts_at": "2026-12-15T08:30:00-05:00",
     "ends_at": "2026-12-15T17:30:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "Entrega continua en equipos de ingeniería",
+        "starts_at": "2026-12-15T09:00:00.000-05:00",
+        "ends_at": "2026-12-15T10:10:00.000-05:00",
+        "capacity": 120,
+        "speaker_names": [
+          "Jez Humble"
+        ]
+      },
+      {
+        "title": "Kubernetes para despliegues confiables",
+        "starts_at": "2026-12-15T11:30:00.000-05:00",
+        "ends_at": "2026-12-15T12:40:00.000-05:00",
+        "capacity": 50,
+        "speaker_names": [
+          "Kelsey Hightower"
+        ]
+      },
+      {
+        "title": "Infraestructura como código",
+        "starts_at": "2026-12-15T14:00:00.000-05:00",
+        "ends_at": "2026-12-15T15:10:00.000-05:00",
+        "capacity": 80,
+        "speaker_names": [
+          "Mitchell Hashimoto"
+        ]
+      }
+    ]
   },
   {
     "name": "Desarrollo de Agentes de IA con LangGraph",
@@ -46,7 +199,45 @@
     "address": "Carrera 11 # 94-25, Bogotá",
     "starts_at": "2026-12-16T09:00:00-05:00",
     "ends_at": "2026-12-16T17:00:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "Diseño de agentes con LangGraph",
+        "starts_at": "2026-12-16T09:30:00.000-05:00",
+        "ends_at": "2026-12-16T10:40:00.000-05:00",
+        "capacity": 50,
+        "speaker_names": [
+          "Harrison Chase"
+        ]
+      },
+      {
+        "title": "Herramientas y razonamiento de agentes",
+        "starts_at": "2026-12-16T11:15:00.000-05:00",
+        "ends_at": "2026-12-16T12:25:00.000-05:00",
+        "capacity": 80,
+        "speaker_names": [
+          "Jerry Liu"
+        ]
+      },
+      {
+        "title": "Evaluación de agentes inteligentes",
+        "starts_at": "2026-12-16T13:00:00.000-05:00",
+        "ends_at": "2026-12-16T14:10:00.000-05:00",
+        "capacity": 100,
+        "speaker_names": [
+          "Andrew Ng"
+        ]
+      },
+      {
+        "title": "Memoria y contexto en agentes",
+        "starts_at": "2026-12-16T14:45:00.000-05:00",
+        "ends_at": "2026-12-16T15:55:00.000-05:00",
+        "capacity": 60,
+        "speaker_names": [
+          "Lilian Weng"
+        ]
+      }
+    ]
   },
   {
     "name": "PostgreSQL y Optimización de Bases de Datos",
@@ -54,7 +245,36 @@
     "address": "Calle 26 # 69-76, Bogotá",
     "starts_at": "2026-12-17T08:00:00-05:00",
     "ends_at": "2026-12-17T15:00:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "Cómo razona el optimizador de PostgreSQL",
+        "starts_at": "2026-12-17T08:30:00.000-05:00",
+        "ends_at": "2026-12-17T09:40:00.000-05:00",
+        "capacity": 80,
+        "speaker_names": [
+          "Tom Lane"
+        ]
+      },
+      {
+        "title": "Consultas SQL y diseño de índices",
+        "starts_at": "2026-12-17T10:30:00.000-05:00",
+        "ends_at": "2026-12-17T11:40:00.000-05:00",
+        "capacity": 100,
+        "speaker_names": [
+          "Markus Winand"
+        ]
+      },
+      {
+        "title": "Escalabilidad y evolución de PostgreSQL",
+        "starts_at": "2026-12-17T12:30:00.000-05:00",
+        "ends_at": "2026-12-17T13:40:00.000-05:00",
+        "capacity": 60,
+        "speaker_names": [
+          "Bruce Momjian"
+        ]
+      }
+    ]
   },
   {
     "name": "Frontend Moderno con React y Next.js",
@@ -62,7 +282,36 @@
     "address": "Carrera 13 # 63-40, Bogotá",
     "starts_at": "2026-12-18T10:00:00-05:00",
     "ends_at": "2026-12-18T18:00:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "Diseño de interfaces con React",
+        "starts_at": "2026-12-18T10:30:00.000-05:00",
+        "ends_at": "2026-12-18T11:40:00.000-05:00",
+        "capacity": 100,
+        "speaker_names": [
+          "Dan Abramov"
+        ]
+      },
+      {
+        "title": "Arquitectura de aplicaciones Next.js",
+        "starts_at": "2026-12-18T12:45:00.000-05:00",
+        "ends_at": "2026-12-18T13:55:00.000-05:00",
+        "capacity": 60,
+        "speaker_names": [
+          "Guillermo Rauch"
+        ]
+      },
+      {
+        "title": "TypeScript para interfaces seguras",
+        "starts_at": "2026-12-18T15:00:00.000-05:00",
+        "ends_at": "2026-12-18T16:10:00.000-05:00",
+        "capacity": 120,
+        "speaker_names": [
+          "Anders Hejlsberg"
+        ]
+      }
+    ]
   },
   {
     "name": "Arquitectura de Microservicios",
@@ -70,7 +319,36 @@
     "address": "Calle 116 # 19-41, Bogotá",
     "starts_at": "2027-01-12T09:00:00-05:00",
     "ends_at": "2027-01-12T17:00:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "Patrones de microservicios",
+        "starts_at": "2027-01-12T09:30:00.000-05:00",
+        "ends_at": "2027-01-12T10:40:00.000-05:00",
+        "capacity": 60,
+        "speaker_names": [
+          "Chris Richardson"
+        ]
+      },
+      {
+        "title": "Diseño de sistemas distribuidos",
+        "starts_at": "2027-01-12T11:45:00.000-05:00",
+        "ends_at": "2027-01-12T12:55:00.000-05:00",
+        "capacity": 120,
+        "speaker_names": [
+          "Martin Kleppmann"
+        ]
+      },
+      {
+        "title": "Resiliencia y evolución arquitectónica",
+        "starts_at": "2027-01-12T14:00:00.000-05:00",
+        "ends_at": "2027-01-12T15:10:00.000-05:00",
+        "capacity": 50,
+        "speaker_names": [
+          "Sam Newman"
+        ]
+      }
+    ]
   },
   {
     "name": "Testing Profesional con Pytest",
@@ -78,7 +356,36 @@
     "address": "Carrera 9 # 74-08, Bogotá",
     "starts_at": "2027-01-13T08:30:00-05:00",
     "ends_at": "2027-01-13T16:30:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "Testing efectivo con pytest",
+        "starts_at": "2027-01-13T09:00:00.000-05:00",
+        "ends_at": "2027-01-13T10:10:00.000-05:00",
+        "capacity": 120,
+        "speaker_names": [
+          "Brian Okken"
+        ]
+      },
+      {
+        "title": "Mocks, fixtures y diseño de pruebas",
+        "starts_at": "2027-01-13T11:15:00.000-05:00",
+        "ends_at": "2027-01-13T12:25:00.000-05:00",
+        "capacity": 50,
+        "speaker_names": [
+          "Hynek Schlawack"
+        ]
+      },
+      {
+        "title": "Pruebas orientadas al comportamiento",
+        "starts_at": "2027-01-13T13:30:00.000-05:00",
+        "ends_at": "2027-01-13T14:40:00.000-05:00",
+        "capacity": 80,
+        "speaker_names": [
+          "Kent Beck"
+        ]
+      }
+    ]
   },
   {
     "name": "IA Generativa y Arquitecturas RAG",
@@ -86,7 +393,45 @@
     "address": "Calle 90 # 11-28, Bogotá",
     "starts_at": "2027-01-14T09:00:00-05:00",
     "ends_at": "2027-01-14T18:00:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "RAG y recuperación de información",
+        "starts_at": "2027-01-14T09:30:00.000-05:00",
+        "ends_at": "2027-01-14T10:40:00.000-05:00",
+        "capacity": 50,
+        "speaker_names": [
+          "Jerry Liu"
+        ]
+      },
+      {
+        "title": "Embeddings y búsqueda semántica",
+        "starts_at": "2027-01-14T11:30:00.000-05:00",
+        "ends_at": "2027-01-14T12:40:00.000-05:00",
+        "capacity": 80,
+        "speaker_names": [
+          "Douwe Kiela"
+        ]
+      },
+      {
+        "title": "Evaluación de aplicaciones LLM",
+        "starts_at": "2027-01-14T13:30:00.000-05:00",
+        "ends_at": "2027-01-14T14:40:00.000-05:00",
+        "capacity": 100,
+        "speaker_names": [
+          "Harrison Chase"
+        ]
+      },
+      {
+        "title": "Arquitecturas de IA responsable",
+        "starts_at": "2027-01-14T15:30:00.000-05:00",
+        "ends_at": "2027-01-14T16:40:00.000-05:00",
+        "capacity": 60,
+        "speaker_names": [
+          "Chip Huyen"
+        ]
+      }
+    ]
   },
   {
     "name": "Clean Architecture y Domain-Driven Design",
@@ -94,7 +439,36 @@
     "address": "Carrera 7 # 72-41, Bogotá",
     "starts_at": "2027-01-15T10:00:00-05:00",
     "ends_at": "2027-01-15T17:00:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "Arquitectura limpia y dependencias",
+        "starts_at": "2027-01-15T10:30:00.000-05:00",
+        "ends_at": "2027-01-15T11:40:00.000-05:00",
+        "capacity": 80,
+        "speaker_names": [
+          "Robert C. Martin"
+        ]
+      },
+      {
+        "title": "Domain-Driven Design estratégico",
+        "starts_at": "2027-01-15T12:30:00.000-05:00",
+        "ends_at": "2027-01-15T13:40:00.000-05:00",
+        "capacity": 100,
+        "speaker_names": [
+          "Eric Evans"
+        ]
+      },
+      {
+        "title": "Refactorización de sistemas complejos",
+        "starts_at": "2027-01-15T14:30:00.000-05:00",
+        "ends_at": "2027-01-15T15:40:00.000-05:00",
+        "capacity": 60,
+        "speaker_names": [
+          "Martin Fowler"
+        ]
+      }
+    ]
   },
   {
     "name": "Desarrollo de Aplicaciones con Docker y Kubernetes",
@@ -102,7 +476,36 @@
     "address": "Calle 127 # 13-45, Bogotá",
     "starts_at": "2027-01-16T08:00:00-05:00",
     "ends_at": "2027-01-16T16:00:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "Contenedores y despliegues reproducibles",
+        "starts_at": "2027-01-16T08:30:00.000-05:00",
+        "ends_at": "2027-01-16T09:40:00.000-05:00",
+        "capacity": 100,
+        "speaker_names": [
+          "Solomon Hykes"
+        ]
+      },
+      {
+        "title": "Kubernetes en entornos productivos",
+        "starts_at": "2027-01-16T10:45:00.000-05:00",
+        "ends_at": "2027-01-16T11:55:00.000-05:00",
+        "capacity": 60,
+        "speaker_names": [
+          "Kelsey Hightower"
+        ]
+      },
+      {
+        "title": "Plataformas cloud nativas",
+        "starts_at": "2027-01-16T13:00:00.000-05:00",
+        "ends_at": "2027-01-16T14:10:00.000-05:00",
+        "capacity": 120,
+        "speaker_names": [
+          "Brendan Burns"
+        ]
+      }
+    ]
   },
   {
     "name": "Ingeniería de Datos con Python",
@@ -110,7 +513,36 @@
     "address": "Carrera 68 # 75A-50, Bogotá",
     "starts_at": "2027-01-18T09:30:00-05:00",
     "ends_at": "2027-01-18T17:30:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "Orquestación de pipelines de datos",
+        "starts_at": "2027-01-18T10:00:00.000-05:00",
+        "ends_at": "2027-01-18T11:10:00.000-05:00",
+        "capacity": 60,
+        "speaker_names": [
+          "Maxime Beauchemin"
+        ]
+      },
+      {
+        "title": "Sistemas de datos confiables",
+        "starts_at": "2027-01-18T12:15:00.000-05:00",
+        "ends_at": "2027-01-18T13:25:00.000-05:00",
+        "capacity": 120,
+        "speaker_names": [
+          "Martin Kleppmann"
+        ]
+      },
+      {
+        "title": "Procesamiento de datos con Python",
+        "starts_at": "2027-01-18T14:30:00.000-05:00",
+        "ends_at": "2027-01-18T15:40:00.000-05:00",
+        "capacity": 50,
+        "speaker_names": [
+          "Wes McKinney"
+        ]
+      }
+    ]
   },
   {
     "name": "Software Engineering Tech Summit 2027",
@@ -118,7 +550,54 @@
     "address": "Calle 24 # 39-80, Bogotá",
     "starts_at": "2027-01-20T08:00:00-05:00",
     "ends_at": "2027-01-20T19:00:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "El futuro de Python",
+        "starts_at": "2027-01-20T08:30:00.000-05:00",
+        "ends_at": "2027-01-20T09:40:00.000-05:00",
+        "capacity": 120,
+        "speaker_names": [
+          "Guido van Rossum"
+        ]
+      },
+      {
+        "title": "Arquitecturas para productos de software",
+        "starts_at": "2027-01-20T10:30:00.000-05:00",
+        "ends_at": "2027-01-20T11:40:00.000-05:00",
+        "capacity": 50,
+        "speaker_names": [
+          "Martin Fowler"
+        ]
+      },
+      {
+        "title": "Construyendo productos con IA",
+        "starts_at": "2027-01-20T12:30:00.000-05:00",
+        "ends_at": "2027-01-20T13:40:00.000-05:00",
+        "capacity": 80,
+        "speaker_names": [
+          "Andrew Ng"
+        ]
+      },
+      {
+        "title": "Ingeniería de software a gran escala",
+        "starts_at": "2027-01-20T14:30:00.000-05:00",
+        "ends_at": "2027-01-20T15:40:00.000-05:00",
+        "capacity": 100,
+        "speaker_names": [
+          "Kent Beck"
+        ]
+      },
+      {
+        "title": "Desarrollo open source y colaboración",
+        "starts_at": "2027-01-20T16:30:00.000-05:00",
+        "ends_at": "2027-01-20T17:40:00.000-05:00",
+        "capacity": 60,
+        "speaker_names": [
+          "Linus Torvalds"
+        ]
+      }
+    ]
   },
   {
     "name": "Blockchain y Desarrollo Web3",
@@ -126,7 +605,36 @@
     "address": "Carrera 14 # 82-35, Bogotá",
     "starts_at": "2027-02-01T09:00:00-05:00",
     "ends_at": "2027-02-01T17:00:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "Fundamentos de contratos inteligentes",
+        "starts_at": "2027-02-01T09:30:00.000-05:00",
+        "ends_at": "2027-02-01T10:40:00.000-05:00",
+        "capacity": 50,
+        "speaker_names": [
+          "Vitalik Buterin"
+        ]
+      },
+      {
+        "title": "Ethereum y aplicaciones descentralizadas",
+        "starts_at": "2027-02-01T11:45:00.000-05:00",
+        "ends_at": "2027-02-01T12:55:00.000-05:00",
+        "capacity": 80,
+        "speaker_names": [
+          "Gavin Wood"
+        ]
+      },
+      {
+        "title": "Seguridad y modelos de confianza en Web3",
+        "starts_at": "2027-02-01T14:00:00.000-05:00",
+        "ends_at": "2027-02-01T15:10:00.000-05:00",
+        "capacity": 100,
+        "speaker_names": [
+          "Dan Boneh"
+        ]
+      }
+    ]
   },
   {
     "name": "Hackathon de Inteligencia Artificial",
@@ -134,7 +642,45 @@
     "address": "Calle 67 # 8-32, Bogotá",
     "starts_at": "2027-02-03T08:00:00-05:00",
     "ends_at": "2027-02-03T22:00:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "Ideas de productos con IA generativa",
+        "starts_at": "2027-02-03T08:30:00.000-05:00",
+        "ends_at": "2027-02-03T09:40:00.000-05:00",
+        "capacity": 80,
+        "speaker_names": [
+          "Andrew Ng"
+        ]
+      },
+      {
+        "title": "Prototipado rápido de aplicaciones LLM",
+        "starts_at": "2027-02-03T11:45:00.000-05:00",
+        "ends_at": "2027-02-03T12:55:00.000-05:00",
+        "capacity": 100,
+        "speaker_names": [
+          "Harrison Chase"
+        ]
+      },
+      {
+        "title": "Evaluación de prototipos de IA",
+        "starts_at": "2027-02-03T15:00:00.000-05:00",
+        "ends_at": "2027-02-03T16:10:00.000-05:00",
+        "capacity": 60,
+        "speaker_names": [
+          "Chip Huyen"
+        ]
+      },
+      {
+        "title": "Presentaciones de proyectos y retroalimentación",
+        "starts_at": "2027-02-03T18:15:00.000-05:00",
+        "ends_at": "2027-02-03T19:25:00.000-05:00",
+        "capacity": 120,
+        "speaker_names": [
+          "Andrej Karpathy"
+        ]
+      }
+    ]
   },
   {
     "name": "Diseño UX/UI con Figma",
@@ -142,7 +688,36 @@
     "address": "Carrera 11 # 93-20, Bogotá",
     "starts_at": "2027-02-05T10:00:00-05:00",
     "ends_at": "2027-02-05T16:00:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "Diseño de productos digitales",
+        "starts_at": "2027-02-05T10:30:00.000-05:00",
+        "ends_at": "2027-02-05T11:40:00.000-05:00",
+        "capacity": 100,
+        "speaker_names": [
+          "Don Norman"
+        ]
+      },
+      {
+        "title": "Prototipos colaborativos en Figma",
+        "starts_at": "2027-02-05T12:00:00.000-05:00",
+        "ends_at": "2027-02-05T13:10:00.000-05:00",
+        "capacity": 60,
+        "speaker_names": [
+          "Dylan Field"
+        ]
+      },
+      {
+        "title": "Diseño inclusivo y accesible",
+        "starts_at": "2027-02-05T13:30:00.000-05:00",
+        "ends_at": "2027-02-05T14:40:00.000-05:00",
+        "capacity": 120,
+        "speaker_names": [
+          "Kat Holmes"
+        ]
+      }
+    ]
   },
   {
     "name": "Emprendimiento y Startups Tecnológicas",
@@ -150,7 +725,36 @@
     "address": "Calle 100 # 19-54, Bogotá",
     "starts_at": "2027-02-08T09:00:00-05:00",
     "ends_at": "2027-02-08T18:00:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "Construir productos que los usuarios quieran",
+        "starts_at": "2027-02-08T09:30:00.000-05:00",
+        "ends_at": "2027-02-08T10:40:00.000-05:00",
+        "capacity": 60,
+        "speaker_names": [
+          "Paul Graham"
+        ]
+      },
+      {
+        "title": "Crecimiento de startups tecnológicas",
+        "starts_at": "2027-02-08T12:00:00.000-05:00",
+        "ends_at": "2027-02-08T13:10:00.000-05:00",
+        "capacity": 120,
+        "speaker_names": [
+          "Sam Altman"
+        ]
+      },
+      {
+        "title": "Validación y aprendizaje continuo",
+        "starts_at": "2027-02-08T14:30:00.000-05:00",
+        "ends_at": "2027-02-08T15:40:00.000-05:00",
+        "capacity": 50,
+        "speaker_names": [
+          "Eric Ries"
+        ]
+      }
+    ]
   },
   {
     "name": "Computación Cuántica para Desarrolladores",
@@ -158,7 +762,36 @@
     "address": "Carrera 7 # 40-62, Bogotá",
     "starts_at": "2027-02-10T08:30:00-05:00",
     "ends_at": "2027-02-10T15:30:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "Introducción a los circuitos cuánticos",
+        "starts_at": "2027-02-10T09:00:00.000-05:00",
+        "ends_at": "2027-02-10T10:10:00.000-05:00",
+        "capacity": 120,
+        "speaker_names": [
+          "John Preskill"
+        ]
+      },
+      {
+        "title": "Algoritmos cuánticos en la práctica",
+        "starts_at": "2027-02-10T11:00:00.000-05:00",
+        "ends_at": "2027-02-10T12:10:00.000-05:00",
+        "capacity": 50,
+        "speaker_names": [
+          "Scott Aaronson"
+        ]
+      },
+      {
+        "title": "Programación cuántica moderna",
+        "starts_at": "2027-02-10T13:00:00.000-05:00",
+        "ends_at": "2027-02-10T14:10:00.000-05:00",
+        "capacity": 80,
+        "speaker_names": [
+          "Jay Gambetta"
+        ]
+      }
+    ]
   },
   {
     "name": "Internet de las Cosas y Smart Cities",
@@ -166,7 +799,36 @@
     "address": "Calle 26 # 92-32, Bogotá",
     "starts_at": "2027-02-12T09:00:00-05:00",
     "ends_at": "2027-02-12T17:00:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "Plataformas IoT y conectividad",
+        "starts_at": "2027-02-12T09:30:00.000-05:00",
+        "ends_at": "2027-02-12T10:40:00.000-05:00",
+        "capacity": 50,
+        "speaker_names": [
+          "Massimo Banzi"
+        ]
+      },
+      {
+        "title": "Sistemas conectados a escala",
+        "starts_at": "2027-02-12T11:45:00.000-05:00",
+        "ends_at": "2027-02-12T12:55:00.000-05:00",
+        "capacity": 80,
+        "speaker_names": [
+          "Kevin Ashton"
+        ]
+      },
+      {
+        "title": "Seguridad para dispositivos IoT",
+        "starts_at": "2027-02-12T14:00:00.000-05:00",
+        "ends_at": "2027-02-12T15:10:00.000-05:00",
+        "capacity": 100,
+        "speaker_names": [
+          "Bruce Schneier"
+        ]
+      }
+    ]
   },
   {
     "name": "GraphQL y Arquitecturas API Modernas",
@@ -174,7 +836,36 @@
     "address": "Carrera 15 # 106-18, Bogotá",
     "starts_at": "2027-02-15T08:00:00-05:00",
     "ends_at": "2027-02-15T16:00:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "GraphQL: diseño de esquemas",
+        "starts_at": "2027-02-15T08:30:00.000-05:00",
+        "ends_at": "2027-02-15T09:40:00.000-05:00",
+        "capacity": 80,
+        "speaker_names": [
+          "Lee Byron"
+        ]
+      },
+      {
+        "title": "APIs modernas y experiencia de desarrollo",
+        "starts_at": "2027-02-15T10:45:00.000-05:00",
+        "ends_at": "2027-02-15T11:55:00.000-05:00",
+        "capacity": 100,
+        "speaker_names": [
+          "Eve Porcello"
+        ]
+      },
+      {
+        "title": "Evolución y composición de servicios GraphQL",
+        "starts_at": "2027-02-15T13:00:00.000-05:00",
+        "ends_at": "2027-02-15T14:10:00.000-05:00",
+        "capacity": 60,
+        "speaker_names": [
+          "Marc-André Giroux"
+        ]
+      }
+    ]
   },
   {
     "name": "Observabilidad con OpenTelemetry",
@@ -182,7 +873,36 @@
     "address": "Calle 85 # 12-45, Bogotá",
     "starts_at": "2027-02-17T09:30:00-05:00",
     "ends_at": "2027-02-17T17:30:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "Telemetría y trazabilidad distribuida",
+        "starts_at": "2027-02-17T10:00:00.000-05:00",
+        "ends_at": "2027-02-17T11:10:00.000-05:00",
+        "capacity": 100,
+        "speaker_names": [
+          "Charity Majors"
+        ]
+      },
+      {
+        "title": "Observabilidad de sistemas en producción",
+        "starts_at": "2027-02-17T12:15:00.000-05:00",
+        "ends_at": "2027-02-17T13:25:00.000-05:00",
+        "capacity": 60,
+        "speaker_names": [
+          "Liz Fong-Jones"
+        ]
+      },
+      {
+        "title": "Métricas e instrumentación de aplicaciones",
+        "starts_at": "2027-02-17T14:30:00.000-05:00",
+        "ends_at": "2027-02-17T15:40:00.000-05:00",
+        "capacity": 120,
+        "speaker_names": [
+          "Ben Sigelman"
+        ]
+      }
+    ]
   },
   {
     "name": "FinTech e Innovación Financiera",
@@ -190,7 +910,36 @@
     "address": "Carrera 13 # 96-67, Bogotá",
     "starts_at": "2027-02-19T10:00:00-05:00",
     "ends_at": "2027-02-19T18:00:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "Ecosistemas de pagos digitales",
+        "starts_at": "2027-02-19T10:30:00.000-05:00",
+        "ends_at": "2027-02-19T11:40:00.000-05:00",
+        "capacity": 60,
+        "speaker_names": [
+          "Patrick Collison"
+        ]
+      },
+      {
+        "title": "Infraestructura para productos fintech",
+        "starts_at": "2027-02-19T12:45:00.000-05:00",
+        "ends_at": "2027-02-19T13:55:00.000-05:00",
+        "capacity": 120,
+        "speaker_names": [
+          "John Collison"
+        ]
+      },
+      {
+        "title": "Tecnología y futuro del dinero",
+        "starts_at": "2027-02-19T15:00:00.000-05:00",
+        "ends_at": "2027-02-19T16:10:00.000-05:00",
+        "capacity": 50,
+        "speaker_names": [
+          "Chris Skinner"
+        ]
+      }
+    ]
   },
   {
     "name": "Apache Kafka y Sistemas Event-Driven",
@@ -198,7 +947,36 @@
     "address": "Calle 72 # 7-82, Bogotá",
     "starts_at": "2027-02-22T08:30:00-05:00",
     "ends_at": "2027-02-22T16:30:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "Arquitecturas event-driven con Kafka",
+        "starts_at": "2027-02-22T09:00:00.000-05:00",
+        "ends_at": "2027-02-22T10:10:00.000-05:00",
+        "capacity": 120,
+        "speaker_names": [
+          "Jay Kreps"
+        ]
+      },
+      {
+        "title": "Streaming distribuido y consistencia",
+        "starts_at": "2027-02-22T11:15:00.000-05:00",
+        "ends_at": "2027-02-22T12:25:00.000-05:00",
+        "capacity": 50,
+        "speaker_names": [
+          "Martin Kleppmann"
+        ]
+      },
+      {
+        "title": "Operación de plataformas de eventos",
+        "starts_at": "2027-02-22T13:30:00.000-05:00",
+        "ends_at": "2027-02-22T14:40:00.000-05:00",
+        "capacity": 80,
+        "speaker_names": [
+          "Neha Narkhede"
+        ]
+      }
+    ]
   },
   {
     "name": "Desarrollo Mobile con Flutter",
@@ -206,7 +984,36 @@
     "address": "Carrera 9 # 76-15, Bogotá",
     "starts_at": "2027-02-24T09:00:00-05:00",
     "ends_at": "2027-02-24T17:00:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "Flutter para interfaces multiplataforma",
+        "starts_at": "2027-02-24T09:30:00.000-05:00",
+        "ends_at": "2027-02-24T10:40:00.000-05:00",
+        "capacity": 50,
+        "speaker_names": [
+          "Eric Seidel"
+        ]
+      },
+      {
+        "title": "Lenguaje Dart y rendimiento",
+        "starts_at": "2027-02-24T11:45:00.000-05:00",
+        "ends_at": "2027-02-24T12:55:00.000-05:00",
+        "capacity": 80,
+        "speaker_names": [
+          "Lars Bak"
+        ]
+      },
+      {
+        "title": "Diseño de experiencias móviles",
+        "starts_at": "2027-02-24T14:00:00.000-05:00",
+        "ends_at": "2027-02-24T15:10:00.000-05:00",
+        "capacity": 100,
+        "speaker_names": [
+          "Filip Hráček"
+        ]
+      }
+    ]
   },
   {
     "name": "Robótica y Automatización Industrial",
@@ -214,7 +1021,36 @@
     "address": "Calle 63 # 24-36, Bogotá",
     "starts_at": "2027-02-26T08:00:00-05:00",
     "ends_at": "2027-02-26T18:00:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "Robótica moderna y aprendizaje",
+        "starts_at": "2027-02-26T08:30:00.000-05:00",
+        "ends_at": "2027-02-26T09:40:00.000-05:00",
+        "capacity": 80,
+        "speaker_names": [
+          "Sebastian Thrun"
+        ]
+      },
+      {
+        "title": "Robots autónomos y percepción",
+        "starts_at": "2027-02-26T11:30:00.000-05:00",
+        "ends_at": "2027-02-26T12:40:00.000-05:00",
+        "capacity": 100,
+        "speaker_names": [
+          "Cynthia Breazeal"
+        ]
+      },
+      {
+        "title": "Visión computacional para robótica",
+        "starts_at": "2027-02-26T14:30:00.000-05:00",
+        "ends_at": "2027-02-26T15:40:00.000-05:00",
+        "capacity": 60,
+        "speaker_names": [
+          "Fei-Fei Li"
+        ]
+      }
+    ]
   },
   {
     "name": "Liderazgo Técnico y Gestión de Equipos",
@@ -222,7 +1058,36 @@
     "address": "Carrera 7 # 113-43, Bogotá",
     "starts_at": "2027-03-01T09:00:00-05:00",
     "ends_at": "2027-03-01T16:00:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "Liderazgo de equipos de ingeniería",
+        "starts_at": "2027-03-01T09:30:00.000-05:00",
+        "ends_at": "2027-03-01T10:40:00.000-05:00",
+        "capacity": 100,
+        "speaker_names": [
+          "Camille Fournier"
+        ]
+      },
+      {
+        "title": "Cultura y productividad de desarrolladores",
+        "starts_at": "2027-03-01T11:30:00.000-05:00",
+        "ends_at": "2027-03-01T12:40:00.000-05:00",
+        "capacity": 60,
+        "speaker_names": [
+          "Nicole Forsgren"
+        ]
+      },
+      {
+        "title": "Liderar cambios técnicos",
+        "starts_at": "2027-03-01T13:30:00.000-05:00",
+        "ends_at": "2027-03-01T14:40:00.000-05:00",
+        "capacity": 120,
+        "speaker_names": [
+          "Will Larson"
+        ]
+      }
+    ]
   },
   {
     "name": "Redis y Estrategias de Caché",
@@ -230,7 +1095,36 @@
     "address": "Calle 94 # 15-28, Bogotá",
     "starts_at": "2027-03-03T10:00:00-05:00",
     "ends_at": "2027-03-03T17:00:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "Diseño de cachés y estructuras Redis",
+        "starts_at": "2027-03-03T10:30:00.000-05:00",
+        "ends_at": "2027-03-03T11:40:00.000-05:00",
+        "capacity": 60,
+        "speaker_names": [
+          "Salvatore Sanfilippo"
+        ]
+      },
+      {
+        "title": "Escalabilidad de sistemas de datos",
+        "starts_at": "2027-03-03T12:30:00.000-05:00",
+        "ends_at": "2027-03-03T13:40:00.000-05:00",
+        "capacity": 120,
+        "speaker_names": [
+          "Martin Kleppmann"
+        ]
+      },
+      {
+        "title": "Rendimiento y arquitectura de aplicaciones",
+        "starts_at": "2027-03-03T14:30:00.000-05:00",
+        "ends_at": "2027-03-03T15:40:00.000-05:00",
+        "capacity": 50,
+        "speaker_names": [
+          "Brendan Gregg"
+        ]
+      }
+    ]
   },
   {
     "name": "GreenTech y Tecnología Sostenible",
@@ -238,6 +1132,35 @@
     "address": "Carrera 30 # 45-03, Bogotá",
     "starts_at": "2027-03-05T08:30:00-05:00",
     "ends_at": "2027-03-05T17:30:00-05:00",
-    "status": "activo"
+    "status": "activo",
+    "sessions": [
+      {
+        "title": "Innovación y tecnología climática",
+        "starts_at": "2027-03-05T09:00:00.000-05:00",
+        "ends_at": "2027-03-05T10:10:00.000-05:00",
+        "capacity": 120,
+        "speaker_names": [
+          "Saul Griffith"
+        ]
+      },
+      {
+        "title": "Ingeniería para energías limpias",
+        "starts_at": "2027-03-05T11:30:00.000-05:00",
+        "ends_at": "2027-03-05T12:40:00.000-05:00",
+        "capacity": 50,
+        "speaker_names": [
+          "Mark Z. Jacobson"
+        ]
+      },
+      {
+        "title": "IA para sostenibilidad",
+        "starts_at": "2027-03-05T14:00:00.000-05:00",
+        "ends_at": "2027-03-05T15:10:00.000-05:00",
+        "capacity": 80,
+        "speaker_names": [
+          "Fei-Fei Li"
+        ]
+      }
+    ]
   }
 ]

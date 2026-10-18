@@ -1,3 +1,4 @@
+import { makeRegistrationHttpAdapter } from '../infrastructure/http/registration-http-adapter';
 import { makeEventManagementHttpAdapter } from '../infrastructure/http/event-management-http-adapter';
 import { makeSessionHttpAdapter } from '../infrastructure/http/session-http-adapter';
 import type { QueryClient } from '@tanstack/react-query';
@@ -22,6 +23,7 @@ export function createAuthDependencies(queryClient: QueryClient) {
   }
   const http = makePrivateHttpClient(sessions, endSession);
   return {
+    registration: makeRegistrationHttpAdapter(requestJson),
     management: { events: makeEventManagementHttpAdapter(requestJson, http), sessions: makeSessionHttpAdapter(http) },
     sessions,
     auth: makeAuthHttpAdapter(requestJson),

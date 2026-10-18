@@ -1,11 +1,13 @@
-import { Link as RouterLink, Navigate } from 'react-router';
-import { Box, Link, Paper, Stack, SvgIcon, Typography } from '@mui/material';
+import { Link as RouterLink, Navigate, useLocation } from 'react-router';
+import { Alert, Box, Link, Paper, Stack, SvgIcon, Typography } from '@mui/material';
 import { LoginForm } from './LoginForm';
 import { useAuth } from './useAuth';
 import { useLogin } from './useLogin';
 
 export default function LoginPage() {
   const { isAuthenticated } = useAuth();
+  const state: unknown = useLocation().state;
+  const registered = typeof state === 'object' && state !== null && 'registered' in state && state.registered === true;
   const { submit, isSubmitting, error } = useLogin();
   if (isAuthenticated) return <Navigate to="/my-dashboard" replace />;
 
@@ -36,10 +38,12 @@ export default function LoginPage() {
         </Typography>
         <Paper variant="outlined" sx={{ p: { xs: 2.5, sm: 4 }, borderRadius: 3,
           borderColor: '#E9E5EF', boxShadow: '0 8px 32px #211B3505' }}>
+          {registered && <Alert severity="success" sx={{ mb: 3 }}>Tu cuenta fue creada. Inicia sesión para continuar.</Alert>}
           <LoginForm onSubmit={submit} isSubmitting={isSubmitting} error={error} />
         </Paper>
         <Typography sx={{ color: 'secondary.main', fontSize: 12, textAlign: 'center', mt: 3 }}>
-          Tu próximo encuentro empieza aquí.
+          Tu próximo encuentro empieza aquí.<br />
+          ¿Aún no tienes cuenta? <Link component={RouterLink} to="/registro" underline="hover" sx={{ fontWeight: 700 }}>Regístrate</Link> para conectar con tu comunidad.
         </Typography>
       </Box>
     </Box>

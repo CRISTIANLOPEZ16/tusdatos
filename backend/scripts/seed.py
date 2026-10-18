@@ -1,43 +1,45 @@
 import asyncio
 import os
-from datetime import datetime, timedelta, timezone
+from pathlib import Path
 
-from sqlalchemy import select
+from pydantic import Field, TypeAdapter
+from sqlalchemy import func, select
 
-from app.domain.entities.event_status import EventStatus
+from app.domain.entities.event import Event as EventEntity
+from app.domain.entities.session import Session as SessionEntity
 from app.infrastructure.persistence.database import engine, session_factory
 from app.infrastructure.persistence.models import Event, Session, User
+from app.infrastructure.persistence.repositories import (
+    session_repository_adapter,
+)
+from app.infrastructure.schemas.event_schema import EventWriteRequest
+from app.infrastructure.schemas.session_schema import SessionWriteRequest
 from app.infrastructure.security.password_hasher_adapter import (
     PasswordHasherAdapter,
 )
 
-from pathlib import Path
 
-from pydantic import TypeAdapter
-from sqlalchemy import func
-
-from app.infrastructure.schemas.event_schema import EventWriteRequest
+class SeedEvent(EventWriteRequest):
+    sessions: list[SessionWriteRequest] = Field(default_factory=list)
 
 
 async def seed() -> None:
     try:
-        
+        data_path = Path(__file__).with_name("event_data.json")
+        events = TypeAdapter(list[SeedEvent]).validate_json(
+            data_path.read_text(encoding="utf-8")
+        )
+
         async with session_factory.begin() as db:
             user = await db.scalar(
                 select(User).where(User.email == "demo@example.com")
             )
-            data_path = Path(__file__).with_name("event_data.json")
-            events = TypeAdapter(list[EventWriteRequest]).validate_json(
-                data_path.read_text(encoding="utf-8")
-            )
-
             if user is None:
                 password = os.environ["SEED_PASSWORD"]
                 if len(password) < 8:
                     raise ValueError(
                         "SEED_PASSWORD requiere al menos 8 caracteres"
                     )
-
                 user = User(
                     email="demo@example.com",
                     password_hash=await PasswordHasherAdapter().hash(password),
@@ -45,51 +47,62 @@ async def seed() -> None:
                 db.add(user)
                 await db.flush()
 
+            if user.user_id is None:
+                raise RuntimeError("El usuario persistido no tiene ID")
+
+            repository = session_repository_adapter.SessionRepositoryAdapter(
+                db,
+            )
             for data in events:
-                name = data.name.strip()
-                address = data.address.strip()
-
-                if data.ends_at <= data.starts_at:
-                    raise ValueError(
-                        f"El evento '{name}' debe finalizar después de su inicio"
-                    )
-
-                event = await db.scalar(
-                    select(Event).where(
-                        Event.created_by == user.user_id,
-                        func.lower(func.btrim(Event.name)) == name.lower(),
-                        func.lower(func.btrim(Event.address)) == address.lower(),
-                        Event.starts_at == data.starts_at,
-                        Event.ends_at == data.ends_at,
-                    )
+                values = data.model_dump(exclude={"sessions"})
+                validated_event = EventEntity(
+                    **values, created_by=user.user_id,
                 )
+                event = await db.scalar(select(Event).where(
+                    Event.created_by == user.user_id,
+                    func.lower(func.btrim(Event.name))
+                    == validated_event.name.lower(),
+                    func.lower(func.btrim(Event.address))
+                    == validated_event.address.lower(),
+                    Event.starts_at == validated_event.starts_at,
+                    Event.ends_at == validated_event.ends_at,
+                ))
 
                 if event is None:
                     event = Event(
-                        **(data.model_dump() | {"name": name, "address": address}),
+                        **(values | {
+                            "name": validated_event.name,
+                            "address": validated_event.address,
+                        }),
                         created_by=user.user_id,
                     )
                     db.add(event)
                     await db.flush()
 
-                session = await db.scalar(
-                    select(Session).where(
-                        Session.event_id == event.event_id,
-                        Session.title == "[Demo] Arquitectura hexagonal",
-                    )
-                )
+                if event.event_id is None:
+                    raise RuntimeError("El evento persistido no tiene ID")
 
-                if session is None:
-                    db.add(Session(
-                        event_id=event.event_id,
-                        title="[Demo] Arquitectura hexagonal",
-                        starts_at=event.starts_at,
-                        ends_at=min(
-                            event.starts_at + timedelta(hours=1),
-                            event.ends_at,
-                        ),
-                        capacity=30,
+                for session_data in data.sessions:
+                    session = SessionEntity(
+                        event_id=event.event_id, **session_data.model_dump(),
+                    )
+                    session.ensure_fits(event.starts_at, event.ends_at)
+                    existing_id = await db.scalar(select(
+                        Session.session_id,
+                    ).where(
+                        Session.event_id == event.event_id,
+                        Session.title == session.title,
+                        Session.starts_at == session.starts_at,
+                        Session.ends_at == session.ends_at,
                     ))
+                    if existing_id is not None:
+                        continue
+
+                    await repository.lock_speakers(session.speaker_names)
+                    session.ensure_speakers_available(
+                        overlap=await repository.has_speaker_overlap(session),
+                    )
+                    await repository.add(session)
 
         print("Seed completado.")
     finally:

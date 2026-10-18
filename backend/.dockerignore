@@ -17,6 +17,7 @@ coverage.xml
 !.env.example
 
 tests/
+test/
 build/
 dist/
 *.egg-info/

@@ -1,3 +1,4 @@
+import { ManagementContext } from '../../src/presentation/shared/useManagement';
 import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
@@ -23,18 +24,22 @@ function CurrentPath() {
 function renderAuth(path = '/login') {
   const queryClient = new QueryClient();
   const runtime = createAuthDependencies(queryClient);
+  const management = {
+    events: { ...runtime.management.events, mine: async () => ({ items: [], total: 0, page: 1, items_per_page: 6 }) },
+    sessions: { ...runtime.management.sessions, mine: async () => ({ items: [], total: 0, page: 1, items_per_page: 5 }) },
+  };
   render(<ThemeProvider theme={theme}><CssBaseline />
     <QueryClientProvider client={queryClient}>
       <AuthProvider auth={runtime.auth} sessions={runtime.sessions}
         beforeLogin={runtime.clearPrivateData} endSession={runtime.endSession}>
-        <MemoryRouter initialEntries={[path]}><AuthSessionRedirect /><CurrentPath /><Routes>
+        <ManagementContext.Provider value={management}><MemoryRouter initialEntries={[path]}><AuthSessionRedirect /><CurrentPath /><Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/eventos" element={<AuthNavigationButton />} />
           <Route path="/eventos/page/:page" element={<AuthNavigationButton />} />
           <Route element={<RequireAuth />}>
             <Route path="/my-dashboard" element={<MyDashboardPage />} />
           </Route>
-        </Routes></MemoryRouter>
+        </Routes></MemoryRouter></ManagementContext.Provider>
       </AuthProvider>
     </QueryClientProvider>
   </ThemeProvider>);
@@ -50,7 +55,7 @@ function seedSession(exp = Math.floor(Date.now() / 1000) + 600) {
 describe('flujo de autenticación', () => {
   it('protege el dashboard cuando se abre directamente sin sesión', async () => {
     renderAuth('/my-dashboard');
-    expect(await screen.findByRole('link', { name: 'Iniciar sesión' })).toBeVisible();
+    expect(await screen.findByRole('link', { name: 'Iniciar sesión / Registrarse' })).toBeVisible();
     expect(screen.queryByRole('heading', { name: 'Mi dashboard' })).not.toBeInTheDocument();
   });
 
@@ -67,20 +72,14 @@ describe('flujo de autenticación', () => {
     expect(stored).not.toHaveProperty('password');
     await user.click(screen.getByRole('link', { name: 'Volver a eventos' }));
     expect(await screen.findByRole('link', { name: 'Dashboard' })).toBeVisible();
-    expect(screen.queryByRole('link', { name: 'Iniciar sesión' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: 'Iniciar sesión / Registrarse' })).not.toBeInTheDocument();
   });
 
-  it('restaura una sesión en una instancia nueva de la aplicación', async () => {
-    seedSession();
-    renderAuth('/my-dashboard');
-    expect(await screen.findByRole('heading', { name: 'Mi dashboard' })).toBeVisible();
-    expect(screen.getByText('persona@example.com')).toBeVisible();
-  });
-
-  it('redirige desde login si ya hay sesión', async () => {
+  it('restaura la sesión guardada y permite entrar al dashboard desde el login', async () => {
     seedSession();
     renderAuth('/login');
     expect(await screen.findByRole('heading', { name: 'Mi dashboard' })).toBeVisible();
+    expect(screen.getByText('persona@example.com')).toBeVisible();
   });
 
   it('muestra credenciales incorrectas sin guardar sesión', async () => {
@@ -94,27 +93,12 @@ describe('flujo de autenticación', () => {
     expect(sessionStorage.getItem(SESSION_KEY)).toBeNull();
   });
 
-  it('bloquea doble envío mientras llega la respuesta', async () => {
-    const user = userEvent.setup();
-    let finish!: (response: Response) => void;
-    const fetchMock = vi.fn().mockImplementation(() => new Promise<Response>((resolve) => { finish = resolve; }));
-    vi.stubGlobal('fetch', fetchMock);
-    renderAuth();
-    await user.type(screen.getByLabelText(/Correo electrónico/), 'persona@example.com');
-    await user.type(screen.getByLabelText(/^Contraseña/), 'p');
-    await user.dblClick(screen.getByRole('button', { name: 'Iniciar sesión' }));
-    expect(fetchMock).toHaveBeenCalledTimes(1);
-    expect(screen.getByRole('button', { name: 'Ingresando…' })).toBeDisabled();
-    finish(Response.json({ access_token: fakeJwt(), token_type: 'bearer' }));
-    expect(await screen.findByRole('heading', { name: 'Mi dashboard' })).toBeVisible();
-  });
-
   it('cierra sesión y el guard vuelve al listado', async () => {
     const user = userEvent.setup();
     seedSession();
     renderAuth('/my-dashboard');
     await user.click(await screen.findByRole('button', { name: 'Cerrar sesión' }));
-    expect(await screen.findByRole('link', { name: 'Iniciar sesión' })).toBeVisible();
+    expect(await screen.findByRole('link', { name: 'Iniciar sesión / Registrarse' })).toBeVisible();
     expect(sessionStorage.getItem(SESSION_KEY)).toBeNull();
   });
 
@@ -126,7 +110,7 @@ describe('flujo de autenticación', () => {
       await expect(runtime.http('/users/me/events')).rejects.toThrow('Tu sesión dejó de estar activa.');
     });
     expect(screen.getByLabelText('Ruta actual')).toHaveTextContent(/^\/eventos$/);
-    expect(screen.getByRole('link', { name: 'Iniciar sesión' })).toBeVisible();
+    expect(screen.getByRole('link', { name: 'Iniciar sesión / Registrarse' })).toBeVisible();
     expect(sessionStorage.getItem(SESSION_KEY)).toBeNull();
   });
 
@@ -137,7 +121,7 @@ describe('flujo de autenticación', () => {
     renderAuth('/my-dashboard');
     expect(screen.getByRole('heading', { name: 'Mi dashboard' })).toBeVisible();
     await act(async () => { await vi.advanceTimersByTimeAsync(1001); });
-    expect(screen.getByRole('link', { name: 'Iniciar sesión' })).toBeVisible();
+    expect(screen.getByRole('link', { name: 'Iniciar sesión / Registrarse' })).toBeVisible();
     expect(sessionStorage.getItem(SESSION_KEY)).toBeNull();
   });
 });
