@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
-import { Alert, Box, Button, Chip, Container, Dialog, DialogActions,
-  DialogContent, DialogTitle, InputAdornment, LinearProgress, Paper,
+import { Alert, Box, Button, Chip, Container, InputAdornment, LinearProgress, Paper,
   Skeleton, Stack, SvgIcon, TextField, Typography } from '@mui/material';
 import { EventCard } from './EventCard';
 import { useNavigate, useParams } from 'react-router';
 import { readEventQuery } from './event-query';
 import { Pagination } from '../shared/Pagination';
 import { useEvents } from './useEvents';
+import { AuthNavigationButton } from '../auth/AuthNavigationButton';
 
 function EventSearch({ initialName, onSearch }:
   { initialName: string; onSearch: (name: string) => void }) {
@@ -37,8 +37,7 @@ function EventSearch({ initialName, onSearch }:
 export default function EventListPage() {
   const { page, name } = useParams();
   const navigateTo = useNavigate();
-  const [loginNotice, setLoginNotice] = useState(false);
-  
+
   const params = readEventQuery(
     new URLSearchParams({
       name: name ?? '',
@@ -48,7 +47,7 @@ export default function EventListPage() {
   const invalidName = (params.name?.length ?? 0) > 150;
   const query = useEvents(params);
   const data = query.data;
-  
+
   function navigate(name: string, page: number) {
     const base = name
     ? `/eventos/buscar/${encodeURIComponent(name)}`
@@ -78,7 +77,7 @@ export default function EventListPage() {
               <Typography sx={{ display: { xs: 'none', sm: 'block' }, color: 'primary.main', fontSize: 13, fontWeight: 700 }}>
                 Explorar eventos
               </Typography>
-              <Button type="button" variant="outlined" onClick={() => setLoginNotice(true)} sx={{ px: { xs: 1.5, sm: 2.5 }, fontSize: { xs: 12, sm: 14 } }}>Iniciar sesión</Button>
+              <AuthNavigationButton />
             </Stack>
           </Stack>
         </Container>
@@ -147,11 +146,6 @@ export default function EventListPage() {
           <Typography sx={{ color: 'text.secondary', fontSize: 12 }}>Hecho para encontrarnos.</Typography>
         </Box>
       </Container>
-      <Dialog open={loginNotice} onClose={() => setLoginNotice(false)} fullWidth maxWidth="xs">
-        <DialogTitle>Iniciar sesión</DialogTitle>
-        <DialogContent><Alert severity="info">El acceso de usuarios se habilitará en la próxima etapa. Por ahora puedes explorar los eventos.</Alert></DialogContent>
-        <DialogActions><Button type="button" onClick={() => setLoginNotice(false)}>Volver al listado</Button></DialogActions>
-      </Dialog>
     </>
   );
 }
