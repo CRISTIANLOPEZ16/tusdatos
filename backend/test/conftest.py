@@ -1,7 +1,6 @@
 import pytest
 from app.application.dto.session import SessionData
 from app.application.ports.transaction_port import TransactionPort
-from app.application.services.event_service import EventService
 from app.application.services.session_service import SessionService
 from app.domain.entities.event import Event
 from app.domain.entities.event_status import EventStatus
@@ -97,29 +96,6 @@ def session_data(make_session):
         starts_at=session.starts_at,
         ends_at=session.ends_at,
         capacity=session.capacity
-    )
-
-
-@pytest.fixture
-def event_context(make_event):
-    repository = create_autospec(
-        EventRepositoryPort,
-        instance=True,
-        spec_set=True
-    )
-    users = create_autospec(UserRepositoryPort, instance=True, spec_set=True)
-    transaction = create_autospec(
-        TransactionPort,
-        instance=True,
-        spec_set=True
-    )
-    users.get_by_id.return_value = object()
-    repository.get_by_id.return_value = make_event()
-    return (
-        EventService(repository, users, transaction),
-        repository,
-        users,
-        transaction
     )
 
 

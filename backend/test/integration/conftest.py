@@ -7,7 +7,6 @@ from app.infrastructure.persistence.models import (
     Event,
     Registration,
     Session,
-    SessionSpeaker,
     Speaker,
     User,
 )
@@ -157,80 +156,49 @@ async def committed_scenario(database_engine, database_url):
     factory = async_sessionmaker(database_engine, expire_on_commit=False)
     marker = uuid4().hex
     user_ids = []
-    speaker_id = None
     try:
         async with factory() as db:
             users = [
-                User(
-                    email=f'{marker}-{i}@example.com',
-                    password_hash='unused'
-                ) for i in range(3)
+                User(email=f'{marker}-{i}@example.com', password_hash='unused')
+                for i in range(3)
             ]
-            speaker = Speaker(name=marker, normalized_name=marker)
-            db.add_all([*users, speaker])
+            db.add_all(users)
             await db.flush()
-            user_ids = [u.user_id for u in users]
-            speaker_id = speaker.speaker_id
+            user_ids = [user.user_id for user in users]
             start = datetime.now(timezone.utc) + timedelta(days=2)
-            events = [
-                Event(
-                    name=f'{marker}-{i}',
-                    description=None,
-                    address='Calle 123',
-                    starts_at=start,
-                    ends_at=start + timedelta(hours=8),
-                    status=EventStatus.ACTIVE,
-                    created_by=user_ids[i]
-                ) for i in range(2)
-            ]
-            db.add_all(events)
+            event = Event(
+                name=marker, description=None, address='Calle 123',
+                starts_at=start, ends_at=start + timedelta(hours=8),
+                status=EventStatus.ACTIVE, created_by=user_ids[0],
+            )
+            db.add(event)
             await db.flush()
             session = Session(
-                event_id=events[0].event_id,
-                title='Último cupo',
+                event_id=event.event_id, title='Último cupo',
                 starts_at=start + timedelta(hours=1),
-                ends_at=start + timedelta(hours=2),
-                capacity=1
+                ends_at=start + timedelta(hours=2), capacity=1,
             )
             db.add(session)
             await db.flush()
             await db.commit()
-            yield (
-                factory,
-                user_ids,
-                [e.event_id for e in events],
-                session.session_id,
-                speaker.name,
-                start
-            )
+            yield factory, user_ids, event.event_id, session.session_id
     finally:
         async with factory() as db:
-            event_ids = select(
-                Event.event_id
-            ).where(Event.created_by.in_(user_ids))
-            session_ids = select(
-                Session.session_id
-            ).where(Session.event_id.in_(event_ids))
-            await db.execute(
-                delete(
-                    Registration
-                ).where(Registration.session_id.in_(session_ids))
+            event_ids = select(Event.event_id).where(
+                Event.created_by.in_(user_ids),
             )
-            await db.execute(
-                delete(
-                    SessionSpeaker
-                ).where(SessionSpeaker.session_id.in_(session_ids))
+            session_ids = select(Session.session_id).where(
+                Session.event_id.in_(event_ids),
             )
-            await db.execute(
-                delete(Session).where(Session.event_id.in_(event_ids))
-            )
-            await db.execute(
-                delete(Event).where(Event.created_by.in_(user_ids))
-            )
-            if speaker_id is not None:
-                await db.execute(delete(Speaker).where(
-                    Speaker.normalized_name.contains(marker, autoescape=True),
-                ))
+            await db.execute(delete(Registration).where(
+                Registration.session_id.in_(session_ids),
+            ))
+            await db.execute(delete(Session).where(
+                Session.event_id.in_(event_ids),
+            ))
+            await db.execute(delete(Event).where(
+                Event.created_by.in_(user_ids),
+            ))
             await db.execute(delete(User).where(User.user_id.in_(user_ids)))
             await db.commit()
 

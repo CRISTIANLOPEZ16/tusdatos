@@ -24,7 +24,7 @@ def service(db):
 
 
 async def test_only_one_user_gets_last_seat(committed_scenario):
-    factory, users, events, session_id, _, _ = committed_scenario
+    factory, users, event_id, session_id = committed_scenario
     barrier = asyncio.Barrier(2)
 
     async def register(user_id):
@@ -32,7 +32,7 @@ async def test_only_one_user_gets_last_seat(committed_scenario):
             await barrier.wait()
             try:
                 await service(db).register_to_session(
-                    events[0], session_id, user_id,
+                    event_id, session_id, user_id,
                 )
                 return 'registered'
             except SessionConflictError as exc:
