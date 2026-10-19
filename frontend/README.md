@@ -7,11 +7,48 @@ eventos, sesiones e inscripciones.
 
 - Listado público con búsqueda, paginación y detalle de eventos y sesiones.
 - Registro, inicio/cierre de sesión y acceso a vistas privadas mediante JWT.
-- Dashboard con eventos creados, eventos inscritos y sesiones del usuario.
+- Dashboard con eventos creados y sesiones inscritas del usuario.
 - Formularios para gestionar eventos y sesiones, e inscripción con cupos disponibles.
 
 El código separa dominio, aplicación, adaptadores HTTP y presentación.
 React Query gestiona las consultas y Zod valida las respuestas de la API.
+
+## Estructura
+
+| Carpeta | Responsabilidad |
+|---|---|
+| `src/app` | Rutas, proveedores y conexión de dependencias. |
+| `src/domain` | Tipos de eventos, sesiones, usuarios y errores. |
+| `src/application` | Contratos para autenticación, registro, eventos y sesiones. |
+| `src/infrastructure` | Peticiones HTTP, validación de respuestas y almacenamiento de sesión. |
+| `src/presentation` | Páginas, componentes, hooks y estilos, organizados por funcionalidad. |
+| `tests` | Pruebas unitarias, de componentes e integración HTTP. |
+
+En `presentation`, `events` contiene el listado, detalle y formulario de eventos;
+`sessions`, las tarjetas y el formulario de sesiones; `auth`, login, registro y
+protección de rutas; `profile`, el dashboard. `shared` reúne componentes comunes
+y `styles` define el tema de MUI.
+
+Los formularios de eventos y sesiones se abren en diálogos mediante
+`ManagementDialogs`; solo el creador puede editar el evento o agregar sesiones.
+
+## Rutas
+
+Definidas en `src/app/router.tsx` con React Router.
+
+| Ruta | Vista |
+|---|---|
+| `/` | Redirige a `/eventos`. |
+| `/eventos` y `/eventos/page/:page` | Listado público y paginación. |
+| `/eventos/buscar/:name` y `/eventos/buscar/:name/page/:page` | Búsqueda por nombre y paginación. |
+| `/eventos/:eventId` | Detalle del evento y sus sesiones. |
+| `/login` | Inicio de sesión. |
+| `/registro` | Registro de usuario. |
+| `/my-dashboard` | Dashboard; requiere sesión (`RequireAuth`). |
+| Cualquier otra | Página no encontrada (`NotFoundPage`). |
+
+La sesión se conserva en `sessionStorage`. Al expirar o recibir un `401` en una
+petición autenticada, se cierra la sesión y se redirige a `/eventos`.
 
 ## Desarrollo local
 
